@@ -8,7 +8,6 @@ window.uploadMedia = async () => {
   const type = document.getElementById("media-type").value;
   const caption = document.getElementById("caption-input").value;
   const file = document.getElementById("file-input").files[0];
-
   let url = "";
 
   if(type !== "text") {
@@ -17,11 +16,8 @@ window.uploadMedia = async () => {
     url = await getDownloadURL(storageRef);
   }
 
-  await addDoc(collection(db, "posts"), {
-    type,
-    url,
-    caption,
-    createdAt: serverTimestamp()
+  await addDoc(collection(db,"posts"),{
+    type, url, caption, createdAt: serverTimestamp()
   });
 
   alert("Upload berhasil!");
@@ -30,7 +26,7 @@ window.uploadMedia = async () => {
 
 export const loadAdminFeed = async () => {
   feedContainer.innerHTML = "";
-  const q = query(collection(db, "posts"), orderBy("createdAt","desc"));
+  const q = query(collection(db,"posts"), orderBy("createdAt","desc"));
   const snap = await getDocs(q);
 
   snap.forEach(post => {
@@ -39,10 +35,10 @@ export const loadAdminFeed = async () => {
     card.classList.add("post-card");
     let content = "";
 
-    if(data.type === "image") content += `<img src="${data.url}">`;
-    if(data.type === "video") content += `<video controls src="${data.url}"></video>`;
-    if(data.type === "music") content += `<audio controls src="${data.url}"></audio>`;
-    if(data.type === "text") content += `<p>${data.caption}</p>`;
+    if(data.type==="image") content += `<img src="${data.url}">`;
+    if(data.type==="video") content += `<video controls src="${data.url}"></video>`;
+    if(data.type==="music") content += `<audio controls src="${data.url}"></audio>`;
+    if(data.type==="text") content += `<p>${data.caption}</p>`;
     if(data.caption && data.type!=="text") content += `<p class="caption">${data.caption}</p>`;
 
     content += `<button onclick="deletePost('${post.id}')">Hapus Post</button>`;
@@ -52,8 +48,7 @@ export const loadAdminFeed = async () => {
 };
 
 window.deletePost = async (id) => {
-  const docRef = doc(db,"posts",id);
-  await deleteDoc(docRef);
+  await deleteDoc(doc(db,"posts",id));
   alert("Post dihapus!");
   loadAdminFeed();
 };
