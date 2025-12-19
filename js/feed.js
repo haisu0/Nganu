@@ -38,9 +38,9 @@ window.addComment = async (postId) => {
   if(!msg) return alert("Isi komentar dulu!");
 
   await addDoc(collection(db,"posts",postId,"comments"),{
-    name,
-    message: msg
+    name, message: msg
   });
+
   alert("Komentar terkirim!");
   loadFeed();
 };
