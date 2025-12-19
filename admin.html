@@ -1,28 +1,30 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <title>Admin Panel</title>
-  <link rel="stylesheet" href="css/admin.css">
+<meta charset="UTF-8">
+<title>Admin Panel</title>
+<link rel="stylesheet" href="css/admin.css">
 </head>
 <body>
+<header>
+  <h1>Admin Panel</h1>
+</header>
 
-<h2>Admin Panel</h2>
-
-<select id="type">
-  <option value="image">Foto</option>
-  <option value="video">Video</option>
-  <option value="music">Musik</option>
-  <option value="text">Text</option>
-</select>
-
-<input type="file" id="file">
-<textarea id="caption" placeholder="Caption / Deskripsi"></textarea>
-
-<button onclick="upload()">Upload</button>
+<section class="upload-section">
+  <select id="media-type">
+    <option value="image">Foto</option>
+    <option value="video">Video</option>
+    <option value="music">Musik</option>
+    <option value="text">Text</option>
+  </select>
+  <input type="file" id="file-input">
+  <textarea id="caption-input" placeholder="Caption / Deskripsi"></textarea>
+  <button onclick="uploadMedia()">Upload</button>
+</section>
 
 <hr>
-<div id="feed"></div>
+
+<div id="admin-feed"></div>
 
 <script type="module" src="js/admin.js"></script>
 </body>
