@@ -1,21 +1,29 @@
 import { auth, db } from "./firebase.js";
-import { signInWithEmailAndPassword } from 
-"https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import { doc, getDoc } from 
-"https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+const emailInput = document.getElementById("email");
+const passwordInput = document.getElementById("password");
 
 window.login = async () => {
-  const email = email.value;
-  const password = password.value;
+  const email = emailInput.value;
+  const password = passwordInput.value;
 
-  await signInWithEmailAndPassword(auth, email, password);
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
 
-  const admin = await getDoc(doc(db, "admins", "adminAccount"));
-  const viewer = await getDoc(doc(db, "admins", "viewerAccount"));
+    const adminDoc = await getDoc(doc(db, "admins", "adminAccount"));
+    const viewerDoc = await getDoc(doc(db, "admins", "viewerAccount"));
 
-  if (email === admin.data().email) {
-    location.href = "admin.html";
-  } else if (email === viewer.data().email) {
-    location.href = "feed.html";
+    if (email === adminDoc.data().email) {
+      window.location.href = "admin.html";
+    } else if (email === viewerDoc.data().email) {
+      window.location.href = "feed.html";
+    } else {
+      alert("Email tidak terdaftar");
+    }
+
+  } catch (err) {
+    alert("Login gagal: " + err.message);
   }
 };
