@@ -1,22 +1,53 @@
-.upload-section {
-  max-width: 500px;
-  margin: 20px auto;
-  background: #fff;
+body {
+  font-family: 'Helvetica', sans-serif;
+  background-color: #121212;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  text-align: center;
   padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  background-color: #1f1f1f;
+  font-size: 24px;
+  font-weight: bold;
 }
-#admin-feed {
+
+.upload-section {
+  padding: 20px;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 20px;
+  flex-direction: column;
+  gap: 10px;
 }
+
+.upload-section input, .upload-section textarea, .upload-section select, .upload-section button {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+}
+
+.upload-section button {
+  background-color: #ff4b2b;
+  color: #fff;
+  cursor: pointer;
+}
+
+.upload-section button:hover {
+  background-color: #ff416c;
+}
+
+#admin-feed {
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(300px,1fr));
+  gap: 15px;
+  padding: 20px;
+}
+
 .post-card {
-  width: 300px;
-  margin: 10px;
-  background: white;
-  border-radius: 12px;
+  background-color: #1e1e1e;
+  border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
