@@ -1,0 +1,10 @@
+.post {
+  background: white;
+  margin: 20px auto;
+  padding: 10px;
+  width: 90%;
+  max-width: 400px;
+}
+.post img, video {
+  width: 100%;
+}
